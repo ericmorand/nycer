@@ -1,0 +1,1 @@
+exports.covered = 5;

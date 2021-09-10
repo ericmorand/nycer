@@ -1,0 +1,58 @@
+{
+  "name": "nycer",
+  "version": "0.1.0",
+  "description": "",
+  "keywords": [
+    "istanbul",
+    "coverage",
+    "reporter",
+    "testing"
+  ],
+  "author": "Eric MORAND <eric.morand@gmail.com>",
+  "bin": "dist/program.js",
+  "main": "dist/index.js",
+  "files": [
+    "dist",
+    "README.md"
+  ],
+  "license": "ISC",
+  "scripts": {
+    "prebuild": "rimraf dist",
+    "prebuild:test": "rimraf dist",
+    "preinstrument": "npm run build:test",
+    "prepack": "npm run build",
+    "pretest": "npm run build:test",
+    "precover": "rimraf coverage && npm run instrument",
+    "build": "tsc --project . --outDir dist",
+    "build:test": "tsc --project test --outDir dist --inlineSourceMap",
+    "instrument": "ts-node src/program.ts instrument 'dist/**' .",
+    "cover": "ts-node src/program.ts check-coverage dist/test/index.js 'src/**' -r text html -s 100 -b 100 -f 100 -l 100",
+    "test": "node dist/test/index.js"
+  },
+  "devDependencies": {
+    "@types/commander": "^2.12.2",
+    "@types/convert-source-map": "^1.5.2",
+    "@types/fs-extra": "^9.0.12",
+    "@types/glob": "^7.1.4",
+    "@types/istanbul-lib-instrument": "^1.7.4",
+    "@types/istanbul-lib-source-maps": "^4.0.1",
+    "@types/istanbul-reports": "^3.0.1",
+    "@types/node": "^16.9.1",
+    "@types/tape": "^4.13.2",
+    "fs-extra": "^10.0.0",
+    "rimraf": "^3.0.2",
+    "tape": "^5.3.1",
+    "ts-node": "^10.2.1",
+    "typescript": "^4.4.2"
+  },
+  "dependencies": {
+    "commander": "^8.2.0",
+    "convert-source-map": "^1.8.0",
+    "glob": "^7.1.7",
+    "istanbul-lib-coverage": "^3.0.0",
+    "istanbul-lib-instrument": "^4.0.3",
+    "istanbul-lib-report": "^3.0.0",
+    "istanbul-lib-source-maps": "^4.0.0",
+    "istanbul-reports": "^3.0.2"
+  }
+}
